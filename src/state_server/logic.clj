@@ -1,10 +1,18 @@
 (ns state-server.logic
   (:gen-class)
-  (require [cheshire.core :as cat]))
-
+  (require [cheshire.core :as cat])
+  (require [clojure.string :as str]))
 
 ;; Slurps the JSON to create a Clojure hash-map of states
 (def states (cat/parse-string (slurp "resources/states.json") true))
+
+(defn get-coords
+  "This will take the query string and build a hash-map from it."
+  [query-string]
+  (->> (str/split query-string #"&")
+       (map #(str/split % #"="))
+       (map (fn [[k v]] [(keyword k) v]))
+       (into {})))
 
 (defn in?
   "contains? has some weird behavior. Returns true if the coll contains the elm."
