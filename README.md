@@ -1,36 +1,21 @@
-# state-server
+#State server
 
-FIXME: description
+## Dependencies
+1. Leiningen
+2. Available port
+3. Terminal
 
-## Installation
+## Starting the server
+```
+lein run
+```
 
-Download from http://example.com/FIXME.
+Boom.
 
-## Usage
+## Using the server
+```
+curl -d "?latitude=-77.23452&longitude=40.541435" http://localhost:8080
+```
 
-FIXME: explanation
-
-    $ java -jar state-server-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2016 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+## Coming soon
+A map, maybe?

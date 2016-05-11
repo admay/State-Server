@@ -1,7 +1,4 @@
 (ns state-server.core-test
-  (:require [clojure.test :refer :all]
+  (:require [expectations :refer :all]
             [state-server.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
