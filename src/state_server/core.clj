@@ -4,8 +4,7 @@
   (use [ring.middleware.params :only (wrap-params)])
   (use [state-server.logic]))
 
-(defn app*
-  [{:keys [query-string]}]
+(defn app* [{:keys [query-string]}]
   {:body (find-state (get-coords query-string))})
 
 (def app (wrap-params app*))
