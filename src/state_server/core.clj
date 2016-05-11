@@ -10,5 +10,5 @@
 
 (def app (wrap-params app*))
 
-(def server (run-jetty #'app {:port 8080
-                              :join false}))
+;(def server (run-jetty #'app {:port 8080
+;                              :join false}))
