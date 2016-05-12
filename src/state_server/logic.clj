@@ -6,14 +6,6 @@
 ;; Slurps the JSON to create a Clojure hash-map of states
 (def states (cat/parse-string (slurp "resources/states.json") true))
 
-(defn get-coords
-  "This will take the query string and build a hash-map from it."
-  [query-string]
-  (->> (str/split query-string #"&")
-       (map #(str/split % #"="))
-       (map (fn [[k v]] [(keyword k) v]))
-       (into {})))
-
 (defn in?
   "contains? has some weird behavior. Returns true if the coll contains the elm."
   [coll elm]
@@ -29,14 +21,22 @@
   (if (re-find #"^-?\d+\.?\d*$" s)
     (read-string s)))
 
+(defn get-coords
+  "This will take the query string and build a hash-map from it."
+  [query-string]
+  (->> (str/split query-string #"&")
+       (map #(str/split % #"="))
+       (map (fn [[k v]] [(keyword k) v]))
+       (into {})))
+
 (defn coords->point
-  "Converts a hash-map of coords into a vector."
+  "Converts hashmap coords to vector containing values"
   [coords]
-  (let [{:keys [latitude longitude]} coords]
-    [(parse-number longitude) (parse-number latitude)]))
+  (into [] (take 2 (vals coords))))
 
 (defn colinear?
-  "Check to see if a point, p, is colinear to points x and y"
+  "Check to see if a value p is at or beyond the lower bound but
+  does not exceed the upper bound."
   [p x y]
   (or (and (<= x p) (> y p))
       (and (> x p) (<= y p))))
