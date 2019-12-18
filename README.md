@@ -16,6 +16,3 @@ Boom.
 ```
 curl -d "?latitude=-77.23452&longitude=40.541435" http://localhost:8080
 ```
-
-## Coming soon
-A map, maybe?
